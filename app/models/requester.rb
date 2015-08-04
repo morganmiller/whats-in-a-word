@@ -6,6 +6,7 @@ class Requester
 
   def self.most_used_phrases_for_state(state)
     params = { query: {apikey: KEY, entity_type: "state", entity_value: state}}
+    binding.pry
     self.get("/phrases.json", params)
   end
 end
