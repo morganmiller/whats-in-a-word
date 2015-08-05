@@ -17,6 +17,7 @@ gem 'httparty'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'sentimental'
+gem 'gon'
 
 group :development, :test do
   gem 'byebug'
