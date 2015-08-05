@@ -4,7 +4,7 @@ class CreateQuotes < ActiveRecord::Migration
       t.text :body
       t.string :speaker
       t.references :word, index: true, foreign_key: true
-      t.integer :sentiment
+      t.float :sentiment
 
       t.timestamps null: false
     end

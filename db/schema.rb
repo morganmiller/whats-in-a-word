@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150804204456) do
     t.text     "body"
     t.string   "speaker"
     t.integer  "word_id"
-    t.integer  "sentiment"
+    t.float    "sentiment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
