@@ -15,7 +15,7 @@ namespace :cw do
     Sentimental.load_defaults
     State.find_by(name:"CO").words.each do |word|
       Requester.quotes_by_word(word.word, word.state.name)[1][1].each do |quotes|
-        if quotes["speaking"].flatten.join(" ").split(" ").length > 30
+        if quotes["speaking"].flatten.join(" ").split(" ").length > 20
           puts quotes["date"]
           quote = Quote.find_or_create_by(body: quotes["speaking"].join(" "),
                                           speaker: "#{quotes["speaker_first"]} #{quotes["speaker_last"]}")
