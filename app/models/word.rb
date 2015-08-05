@@ -2,7 +2,15 @@ class Word < ActiveRecord::Base
   belongs_to :state
   has_many :quotes
 
-  def congress_sentiment
-    self.quotes.pluck
+  def congress_sentiments
+    self.quotes.pluck(:sentiment)
+  end
+
+  def percent_positive
+    (congress_sentiments.count { |n| n > 0 }.to_f / congress_sentiments.length.to_f * 100).to_i
+  end
+
+  def percent_negative
+    (congress_sentiments.count { |n| n < 0 }.to_f / congress_sentiments.length.to_f * 100).to_i
   end
 end
