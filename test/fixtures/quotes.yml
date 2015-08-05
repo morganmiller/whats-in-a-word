@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  speaker: MyString
+  word_id: 
+  sentiment: 1
+
+two:
+  body: MyText
+  speaker: MyString
+  word_id: 
+  sentiment: 1

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word: MyString
+  mentions: 1
+  state_id: 
+
+two:
+  word: MyString
+  mentions: 1
+  state_id: 
