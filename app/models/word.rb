@@ -13,4 +13,8 @@ class Word < ActiveRecord::Base
   def percent_negative
     (congress_sentiments.count { |n| n < 0 }.to_f / congress_sentiments.length.to_f * 100).to_i
   end
+
+  def random_quotes
+    self.quotes.sample(3)
+  end
 end
