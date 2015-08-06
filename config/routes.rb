@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
+  root to: 'states#index'
 
-  resources :states, only: [:show]
+  resources :states, only: [:show, :index]
 end

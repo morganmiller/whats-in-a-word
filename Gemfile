@@ -17,7 +17,6 @@ gem 'httparty'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'sentimental'
-gem 'gon'
 gem 'jqcloud-rails'
 
 group :development, :test do

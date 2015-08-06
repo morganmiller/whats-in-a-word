@@ -1,14 +1,17 @@
 class StatesController < ApplicationController
 
-  def show
-    @state = State.find(params[:id])
-    gon.words = @state.words.map(&:word)
-    render json: gon.words
-
-    gon.jbuilder :template => "app/views/tags/cloud.json.jbuilder", as: "tags"
+  def index
+    respond_to do |format|
+      format.html { render "index" }
+      format.json { render "cloud" }
+    end
   end
 
-  def cloud
-
+  def show
+    @state = State.find(params[:id])
+    respond_to do |format|
+      format.html { render "show" }
+      format.json { render @state.cloud }
+    end
   end
 end
