@@ -1,13 +1,15 @@
 class Parser
-  #I may not need this anymore
-  def self.most_used_phrases_for_state(state)
-    words = Requester.most_used_words_for_state(state).to_a
-    word_counts(words).sort
+  def self.create_words
+    state = State.find_by(name: "CO")
+    # State.all.each do |state|
+    Word.find_or_create_by(Parser.word_attrs(state))
+    # end
+    end
   end
 
-  def self.word_counts(words)
-    words.each_with_object([]) do |word, word_counts|
-      word_counts << [word['count'], word["ngram"]]
+  def self.create_quotes
+    Word.all.each do |word|
+      Quote.find_or_create_by(Parser.quote_attrs(word, word.state))
     end
   end
 end
