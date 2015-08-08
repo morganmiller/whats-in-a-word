@@ -20,6 +20,8 @@ gem 'sentimental'
 gem 'jqcloud-rails'
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'mrspec'
   gem 'byebug'
   gem 'pry'
   gem 'web-console', '~> 2.0'
