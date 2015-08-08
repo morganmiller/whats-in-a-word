@@ -3,9 +3,8 @@ class State < ActiveRecord::Base
   has_many :quotes, through: :words
 
   def cloud
-    json.array! self.words.all do |word|
-      json.text   word.word
-      json.weight word.mentions
+    self.words.map do |word|
+      {text: word.word, weight: word.mentions}
     end
   end
 end
