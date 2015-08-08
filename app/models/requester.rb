@@ -22,6 +22,6 @@ class Requester
                        start_date: "2015-01-01",
                        per_page: "1500"}}
 
-    self.get("/text.json", params).to_a
+    self.get("/text.json", params).parsed_response["results"].map(&:symbolize_keys)
   end
 end

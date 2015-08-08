@@ -15,5 +15,10 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#word-cloud {
+  width: 550px;
+  height: 350px;
+}

@@ -2,14 +2,15 @@
   <div class="row">
     <div class="col-lg-5">
       <br><br><br>
-      <div id="word-cloud" data-id="<%= @state.id %>" style="width: 550px; height: 350px;"></div>
+      <div id="word-cloud" data-id="<%= @state.id %>"></div>
     </div>
     <div class="col-lg-7">
       <h1>Here is where sentiment analyses go</h1>
+
       <ul>
         <%= @state.words.each do |word| %>
-          <li><%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%</li>
-          <li>
+          <li class="<%= word %>"><%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%</li>
+          <li class="<%= word %>">
             <% word.random_quotes.each do |quote| %>
               "<%= quote.snippet %>" - <%= quote.speaker %><br>
             <% end %>

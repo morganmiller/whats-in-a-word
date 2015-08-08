@@ -8,7 +8,11 @@ class Quote < ActiveRecord::Base
     return body if all_words.count <= 20
 
     i = all_words.index(word.word)
+
+    #fix with validation?
     return "quote" if i.nil?
+    ###
+
     start_i = i - 10
     end_i = i + 10
 
