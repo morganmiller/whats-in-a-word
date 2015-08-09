@@ -11,8 +11,11 @@ class Requester
                        sort: "count desc"}}
 
     words = self.get("/phrases.json", params).to_a.map(&:symbolize_keys)
-    words.delete_if { |word| word[:ngram].include?(state.full_name.downcase) || word == "amendment" }
-    words.first(30)
+    filter_unwanted_words(words, state).first(30)
+  end
+
+  def self.filter_unwanted_words(words, state)
+    words.delete_if { |word| word[:ngram].include?(state.full_name.downcase) || word[:ngram] == "amendment" }
   end
 
   def self.word_attrs(state)

@@ -4,7 +4,6 @@ class Parser
     # State.all.each do |state|
     Word.find_or_create_by(Parser.word_attrs(state))
     # end
-    end
   end
 
   def self.create_quotes
