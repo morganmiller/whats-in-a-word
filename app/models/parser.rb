@@ -2,7 +2,9 @@ class Parser
   def self.create_words
     state = State.find_by(name: "CO")
     # State.all.each do |state|
-    Word.find_or_create_by(Requester.word_attrs(state))
+    Requester.word_attrs(state).each do |word|
+      Word.find_or_create_by(word)
+    end
     # end
   end
 
