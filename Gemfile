@@ -18,6 +18,9 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'sentimental'
 gem 'jqcloud-rails'
+gem 'omniauth-twitter'
+gem 'twitter'
+
 
 group :development, :test do
   gem 'rspec-rails'
