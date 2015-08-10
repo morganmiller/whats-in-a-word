@@ -4,7 +4,7 @@ class StatesController < ApplicationController
   end
 
   def show
-    @state = State.find(params[:id])
+    @state = State.find_by(name: params[:id].upcase)
     respond_to do |format|
       format.html { render "show" }
       format.json { render json: @state.cloud }

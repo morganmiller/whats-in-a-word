@@ -10,7 +10,9 @@ class Parser
 
   def self.create_quotes
     Word.all.each do |word|
-      Quote.find_or_create_by(Requester.quote_attrs(word, word.state))
+      Requester.quote_attrs(word.word, word.state).each do |quote|
+        Quote.find_or_create_by(quote)
+      end
     end
   end
 end

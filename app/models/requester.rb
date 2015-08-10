@@ -39,7 +39,7 @@ class Requester
 
   def self.quote_attrs(word, state)
     quotes_by_word(word, state).map do |quote_attrs|
-      {word: word,
+      {word: Word.find_by(word: word),
        body: quote_attrs[:speaking].first,
        speaker: "#{quote_attrs[:speaker_first]} #{quote_attrs[:speaker_last]}",
        sentiment: analyze_sentiment(quote_attrs[:speaking].first)
