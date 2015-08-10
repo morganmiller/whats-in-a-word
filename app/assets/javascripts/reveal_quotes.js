@@ -1,6 +1,6 @@
-$(document).ready(function(){
-  $(".quotes").hide();
-});
+//$(document).ready(function(){
+//  $("li").hide();
+//});
 
 
 

@@ -7,6 +7,7 @@
     <div class="col-lg-7">
       <h1>Here is where sentiment analyses go</h1>
       <%= link_to "debt", "#", class: "cloud-link" %>
+      <%= link_to "missile", "#", class: "cloud-link" %>
       <ul class="quotes">
         <%= @state.words.each do |word| %>
           <li class="<%= word.word %>"><%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%</li>

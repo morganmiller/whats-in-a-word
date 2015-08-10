@@ -1,16 +1,15 @@
 $(document).ready(function(){
-  $.getJSON("/states/" + $("#word-cloud").data("id") + ".json").success (function(words) {
-    $("#word-cloud").jQCloud(words);
-    bleh();
+  $.getJSON("/states/" + $("#word-cloud").data("id") + ".json").then(function(words) {
+    $("#word-cloud").jQCloud(words.map(addClickHandler));
   });
 });
 
-
-function bleh() {
-  return $(".cloud-link").on('click', function(event) {
-    event.preventDefault();
-    console.log("HeeeeYyyyY");
-    var word = this.text;
-    $("." + word).show();
-  })
-};
+function addClickHandler(word) {
+  word.handlers = {
+    click: function () {
+      // Your code here.
+      console.log(word);
+    }
+  };
+  return word;
+}

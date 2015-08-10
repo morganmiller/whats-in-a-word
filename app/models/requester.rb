@@ -15,7 +15,9 @@ class Requester
   end
 
   def self.filter_unwanted_words(words, state)
-    words.delete_if { |word| word[:ngram].include?(state.full_name.downcase) || word[:ngram] == "amendment" }
+    words.delete_if do |word|
+      word[:ngram].include?(state.full_name.downcase) || word[:ngram] == "amendment" || word[:ngram] == "thing"
+    end
   end
 
   def self.word_attrs(state)
@@ -40,9 +42,9 @@ class Requester
   def self.quote_attrs(word, state)
     quotes_by_word(word, state).map do |quote_attrs|
       {word: Word.find_by(word: word),
-       body: quote_attrs[:speaking].first,
+       body: quote_attrs[:speaking].join(" "),
        speaker: "#{quote_attrs[:speaker_first]} #{quote_attrs[:speaker_last]}",
-       sentiment: analyze_sentiment(quote_attrs[:speaking].first)
+       sentiment: analyze_sentiment(quote_attrs[:speaking].join(" "))
       }
     end
   end
