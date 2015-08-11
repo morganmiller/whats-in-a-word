@@ -11,20 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810212341) do
+ActiveRecord::Schema.define(version: 20150811170923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "legislators", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "party"
+    t.string   "phone"
+    t.integer  "state_id"
+    t.string   "term_start"
+    t.string   "term_end"
+    t.string   "twitter_handle"
+    t.string   "title"
+    t.string   "website"
+    t.string   "bio_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "legislators", ["state_id"], name: "index_legislators_on_state_id", using: :btree
 
   create_table "quotes", force: :cascade do |t|
     t.text     "body"
     t.string   "speaker"
     t.integer  "word_id"
     t.float    "sentiment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "bio_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "legislator_id"
   end
 
+  add_index "quotes", ["legislator_id"], name: "index_quotes_on_legislator_id", using: :btree
   add_index "quotes", ["word_id"], name: "index_quotes_on_word_id", using: :btree
 
   create_table "states", force: :cascade do |t|
@@ -48,12 +69,17 @@ ActiveRecord::Schema.define(version: 20150810212341) do
     t.string   "word"
     t.integer  "mentions"
     t.integer  "state_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "legislator_id"
   end
 
+  add_index "words", ["legislator_id"], name: "index_words_on_legislator_id", using: :btree
   add_index "words", ["state_id"], name: "index_words_on_state_id", using: :btree
 
+  add_foreign_key "legislators", "states"
+  add_foreign_key "quotes", "legislators"
   add_foreign_key "quotes", "words"
+  add_foreign_key "words", "legislators"
   add_foreign_key "words", "states"
 end

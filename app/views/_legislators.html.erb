@@ -1,0 +1,11 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><%= @state.full_name %> Legislators
+    <span class="caret"></span></button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+    <% @state.legislators.each do |leg| %>
+      <li role="presentation"><a role="menuitem" href="<%= legislator_path(leg) %>">
+        <%= leg.first_name %> <%= leg.last_name %>
+      </a></li>
+    <% end %>
+  </ul>
+</div>

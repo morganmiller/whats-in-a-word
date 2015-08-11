@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <% if @legislator.words == [] %>
+      <%= render partial: '/speak_up', locals: {legislator: @legislator, user: @user} %>
+    <% else %>
+      <div class="col-lg-5">
+        <br><br><br>
+        <div id="word-cloud" data-root="/legislators/" data-id="<%= @legislator.id %>"></div>
+      </div>
+
+      <div class="col-lg-7">
+        <h1>Here is where sentiment analyses go</h1><br>
+
+        <%= render partial: '/list_of_quotes', locals: {object: @legislator} %>
+
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $.getJSON("/states/" + $("#word-cloud").data("id") + ".json").then(function(words) {
+  $.getJSON($("#word-cloud").data("root") + $("#word-cloud").data("id") + ".json").then(function(words) {
     $("#word-cloud").jQCloud(words.map(addClickHandler));
   });
 });

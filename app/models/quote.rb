@@ -1,5 +1,7 @@
 class Quote < ActiveRecord::Base
   belongs_to :word
+  belongs_to :legislator
+
   validates :speaker, presence: true
   validates :body, uniqueness: true
 

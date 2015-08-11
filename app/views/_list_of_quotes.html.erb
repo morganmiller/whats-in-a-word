@@ -1,4 +1,4 @@
-<% @state.words.each do |word| %>
+<% object.words.each do |word| %>
   <div id="<%= word.word %>" class="toggle" style="display:none">
     <%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%
     <ul><% word.random_quotes.each do |quote| %>
