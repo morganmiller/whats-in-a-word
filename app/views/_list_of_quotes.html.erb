@@ -2,7 +2,9 @@
   <div id="<%= word.word %>" class="toggle" style="display:none">
     <%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%
     <ul><% word.random_quotes.each do |quote| %>
-        <li>"<%= quote.snippet %>" - <%= quote.speaker %></li>
+        <li>
+          "<%= quote.snippet %>" - <%= quote.speaker %> <%= link_to "(read the full quote)", quote_path(quote) %>
+        </li>
       <% end %></ul>
   </div>
 <% end %>

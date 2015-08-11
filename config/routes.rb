@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :states, only: [:show, :index]
   resources :legislators, only: [:show]
+  resources :quotes, only: [:show]
 
   get '/auth/twitter', as: 'login'
   get '/auth/twitter/callback', to: 'sessions#create'
