@@ -10,7 +10,8 @@ class ParserTest < ActiveSupport::TestCase
                       state: state
     }]
 
-
+    Requester.any_instance.stub(:word_attrs).with(custom_attrs)
+    Parser.create_words
     assert_equal "government", Word.last.word
   end
 end

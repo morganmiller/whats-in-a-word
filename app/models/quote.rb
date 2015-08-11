@@ -22,7 +22,7 @@ class Quote < ActiveRecord::Base
     if start_i >= 0 && end_i <= (all_words.count - 1)
       "...#{all_words[start_i..end_i].join(" ")}..."
     elsif !(start_i >= 0)
-      "#{all_words[1..end_i].join(" ")}..."
+      "#{all_words[0..end_i].join(" ")}..."
     elsif !(end_i <= (all_words.count - 1))
       "...#{all_words[start_i..-1].join(" ")}"
     end

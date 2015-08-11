@@ -5,6 +5,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'vcr'
 require 'mocha/mini_test'
+require 'simplecov'
+SimpleCov.start 'rails'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
@@ -23,6 +25,4 @@ end
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
-  # Add more helper methods to be used by all tests here...
 end

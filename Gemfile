@@ -32,7 +32,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'
   gem 'mocha'
-  gem 'webmock'
   gem 'vcr'
+  gem 'simplecov'
+  gem 'webmock'
 end
 

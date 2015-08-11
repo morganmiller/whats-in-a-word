@@ -3,6 +3,14 @@ class Requester
   base_uri 'http://capitolwords.org/api/1'
   KEY = ENV['sunlight_key']
 
+  def self.phrases_query(params)
+    self.get("/phrases.json", params).to_a.map(&:symbolize_keys)
+  end
+
+  def self.text_query(params)
+    self.get("/text.json", params).parsed_response["results"].map(&:symbolize_keys)
+  end
+
   def self.most_used_words_for_state(state)
     params = { query: {apikey: KEY,
                        entity_type: "state",
@@ -10,8 +18,7 @@ class Requester
                        start_date: "2015-01-01",
                        sort: "count desc"}}
 
-    words = self.get("/phrases.json", params).to_a.map(&:symbolize_keys)
-    filter_unwanted_words(words, state).first(30)
+    filter_unwanted_words(phrases_query(params), state).first(30)
   end
 
   def self.most_used_words_for_legislator(leg)
@@ -20,12 +27,13 @@ class Requester
                        entity_value: leg.bio_id,
                        sort: "count desc"}}
 
-    self.get("/phrases.json", params).to_a.map(&:symbolize_keys).first(30)
+    phrases_query(params).first(30)
   end
 
   def self.filter_unwanted_words(words, state)
+    lame_words = ["amendment", "thing", "maybe"]
     words.delete_if do |word|
-      word[:ngram].include?(state.full_name.downcase) || word[:ngram] == "amendment" || word[:ngram] == "thing"
+      word[:ngram].include?(state.full_name.downcase) || lame_words.include?(word[:ngram])
     end
   end
 
@@ -54,38 +62,37 @@ class Requester
                         start_date: "2015-01-01",
                         per_page: "500"}}
 
-    self.get("/text.json", params).parsed_response["results"].map(&:symbolize_keys)
-  end
-
-  def self.quote_attrs(word, state)
-    quotes_by_word(word, state).map do |quote_attrs|
-      { word: word,
-        body: quote_attrs[:speaking].join(" "),
-        speaker: "#{quote_attrs[:speaker_first]} #{quote_attrs[:speaker_last]}",
-        bio_id: quote_attrs[:bioguide_id],
-        sentiment: analyze_sentiment(quote_attrs[:speaking].join(" "))
-      }
-    end
+    text_query(params)
   end
 
   def self.quotes_by_legislator(word, leg)
     params = { query: { apikey: KEY,
-                        phrase: word.word,
-                        bioguide_id: leg.bio_id,
-                        per_page: "100"}}
+      phrase: word.word,
+      bioguide_id: leg.bio_id,
+      per_page: "100"}}
 
-    self.get("/text.json", params).parsed_response["results"].map(&:symbolize_keys)
+    text_query(params)
+  end
+
+  def self.quote_attrs(word, state)
+    quotes_by_word(word, state).map do |quote_attrs|
+      common_quote_attrs(word, quote_attrs)
+    end
   end
 
   def self.leg_quote_attrs(word, leg)
     quotes_by_legislator(word, leg).map do |quote_attrs|
-      { word: word,
-        body: quote_attrs[:speaking].join(" "),
-        speaker: "#{quote_attrs[:speaker_first]} #{quote_attrs[:speaker_last]}",
-        bio_id: quote_attrs[:bioguide_id],
-        sentiment: analyze_sentiment(quote_attrs[:speaking].join(" "))
-      }
+      common_quote_attrs(word, quote_attrs)
     end
+  end
+
+  def self.common_quote_attrs(word, quote_attrs)
+    { word: word,
+      body: quote_attrs[:speaking].join(" "),
+      speaker: "#{quote_attrs[:speaker_first]} #{quote_attrs[:speaker_last]}",
+      bio_id: quote_attrs[:bioguide_id],
+      sentiment: analyze_sentiment(quote_attrs[:speaking].join(" "))
+    }
   end
 
   def self.analyze_sentiment(quote)
