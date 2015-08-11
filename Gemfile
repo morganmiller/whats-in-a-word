@@ -20,6 +20,7 @@ gem 'sentimental'
 gem 'jqcloud-rails'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'skylight'
 
 
 group :development, :test do
