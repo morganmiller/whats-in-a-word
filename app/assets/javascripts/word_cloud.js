@@ -6,8 +6,11 @@ $(document).ready(function(){
 
 function addClickHandler(word) {
   word.handlers = {
-    click: function () {
-      // Your code here.
+    click: function (e) {
+      e.preventDefault();
+      $(".toggle").hide();
+      var toShow = this.children[0].text;
+      $("#" + toShow).show();
       console.log(word);
     }
   };

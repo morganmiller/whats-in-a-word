@@ -4,21 +4,12 @@
       <br><br><br>
       <div id="word-cloud" data-id="<%= @state.name %>"></div>
     </div>
+
     <div class="col-lg-7">
-      <h1>Here is where sentiment analyses go</h1>
-      <%= link_to "debt", "#", class: "cloud-link" %>
-      <%= link_to "missile", "#", class: "cloud-link" %>
-      <ul class="quotes">
-        <%= @state.words.each do |word| %>
-          <li class="<%= word.word %>"><%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%</li>
-          <li class="<%= word.word %>">
-            <% word.random_quotes.each do |quote| %>
-              "<%= quote.snippet %>" - <%= quote.speaker %><br>
-            <% end %>
-          </li>
-          <br><br>
-        <% end  %>
-      </ul>
+      <h1>Here is where sentiment analyses go</h1><br>
+
+      <%= render '/list_of_quotes' %>
+
     </div>
   </div>
 </div>
