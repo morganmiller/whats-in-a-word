@@ -10,7 +10,7 @@ class Parser
 
   def self.create_quotes
     Word.all.each do |word|
-      Requester.quote_attrs(word.word, word.state).each do |quote|
+      Requester.quote_attrs(word, word.state).each do |quote|
         if quote[:body].length > 160
           Quote.find_or_create_by(quote)
         end

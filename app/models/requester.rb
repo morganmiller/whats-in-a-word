@@ -49,8 +49,8 @@ class Requester
 
   def self.quotes_by_word(word, state)
     params = { query: { apikey: KEY,
-                        phrase: word,
-                        speaker_state: state,
+                        phrase: word.word,
+                        speaker_state: state.name,
                         start_date: "2015-01-01",
                         per_page: "500"}}
 
@@ -59,7 +59,7 @@ class Requester
 
   def self.quote_attrs(word, state)
     quotes_by_word(word, state).map do |quote_attrs|
-      { word: Word.find_by(word: word),
+      { word: word,
         body: quote_attrs[:speaking].join(" "),
         speaker: "#{quote_attrs[:speaker_first]} #{quote_attrs[:speaker_last]}",
         bio_id: quote_attrs[:bioguide_id],
