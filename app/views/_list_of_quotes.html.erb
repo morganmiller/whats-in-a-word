@@ -1,10 +1,11 @@
 <% object.words.each do |word| %>
   <div id="<%= word.word %>" class="toggle" style="display:none">
-    <%= word.word %>: POS <%= word.percent_positive %>%, NEG <%= word.percent_negative %>%
-    <ul><% word.random_quotes.each do |quote| %>
-        <li>
+    <h1 class="quotes-list"><%= word.word %></h1>
+    <%= image_tag 'positive.png', width: "50px" %> <%= word.percent_positive %>% POSITIVE <%= image_tag 'negative.png', width: "50px" %> <%= word.percent_negative %>% NEGATIVE
+    <% word.random_quotes.each do |quote| %>
+        <p class="quote">
           "<%= quote.snippet %>" - <%= quote.speaker %> <%= link_to "(read the full quote)", quote_path(quote) %>
-        </li>
-      <% end %></ul>
+        </p>
+      <% end %>
   </div>
 <% end %>

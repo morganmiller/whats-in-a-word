@@ -18,7 +18,139 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Body Styles
+body{
+  background-color: #e7ddc0;
+  font-family: "Architects Daughter";
+}
+
+// Fonts
+h1{
+  font-size:20px;
+  font-family: Oswald;
+  text-transform: uppercase;
+  color: #322c22;
+}
+
+// Nav
+
+nav{
+  float:right;
+  text-align: right;
+  p{
+    text-transform: capitalize;
+    a{
+     color: #322C22;
+     text-decoration: none;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+
+  }
+}
+
+.logo img{
+  width: 220px;
+  margin-left:-20px;
+}
+
+p.twitter::before{
+  content: url(/assets/twitter-ddefed5853281099874bdb202296abc0ce9b14508fb39befa1c8aa1db0be626d.png);
+  width: 30px;
+  position: relative;
+  z-index: 100000;
+  left: -4px;
+  top: 7px;
+}
+
+#map {
+  margin: auto;
+}
+
 #word-cloud {
   width: 550px;
   height: 350px;
+}
+
+div.jqcloud span.w10 { color: #b37272; }
+div.jqcloud span.w9 { color: #b37272; }
+div.jqcloud span.w8 { color: #b37272; }
+div.jqcloud span.w7 { color: #739aa9; }
+div.jqcloud span.w6 { color: #948466; }
+div.jqcloud span.w5 { color: #948466; }
+div.jqcloud span.w4 { color: #739aa9; }
+div.jqcloud span.w3 { color: #322c22; }
+div.jqcloud span.w2 { color: #948466; }
+div.jqcloud span.w1 { color: #739aa9; }
+
+div.jqcloud a:hover { color: inherit; text-decoration: underline; }
+
+#donkey-elephant {
+  position: absolute;
+  bottom: 0px;
+  width: 900px;
+}
+
+.baby-donkey-elephant {
+  position: absolute;
+  bottom: 25px;
+  right: 5px;
+  width: 200px;
+}
+
+nav p {
+  display: inline;
+  padding-left: 20px;
+}
+
+.map-btn {
+  background-color: #b37272;
+  color: #e7ddc0;
+  border: none;
+  padding: 5px;
+  font-size: 20px;
+  float: right;
+}
+
+.map-btn-2 {
+  background-color: #b37272;
+  color: #e7ddc0;
+  border: none;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.footer {
+  height: 25px;
+  background-color: #739aa9;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  text-align: right;
+}
+
+.footer a {
+  color: #e7ddc0;
+}
+
+h1.quotes-list {
+  font-size: 30px;
+  color: #b37272;
+}
+
+a {
+  color: #739aa9;
+}
+
+p.quote {
+  border-bottom: 1px;
+  border-bottom-color: #322c22;
+  border-bottom-style: solid;
+}
+
+p.quote-text {
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
 }

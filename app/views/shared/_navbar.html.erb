@@ -1,0 +1,18 @@
+<div class="container-fluid">
+<div class="col-md-4">
+  <%= link_to image_tag('logo.png'), root_path, class: "logo" %>
+</div>
+
+
+<div class="col-md-8">
+  <nav>
+      <p><%= link_to "map", states_path %></p>
+    <% if current_user %>
+      <p class="twitter"><%= link_to "logout", logout_path %></p>
+    <% else %>
+      <p class="twitter"><%= link_to "login with twitter", login_path %></p>
+    <% end %>
+  </nav>
+
+</div>
+</div>

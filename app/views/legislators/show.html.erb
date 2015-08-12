@@ -3,16 +3,19 @@
     <% if @legislator.words == [] %>
       <%= render partial: '/speak_up', locals: {legislator: @legislator, user: @user} %>
     <% else %>
-      <div class="col-lg-5">
-        <br><br><br>
+      <br>
+      <div class="col-lg-6">
+        <br>
         <div id="word-cloud" data-root="/legislators/" data-id="<%= @legislator.id %>"></div>
+        <%= button_to "Back to #{@legislator.state.full_name.upcase}", state_path(@legislator.state), class: 'map-btn-2', method: :get %>
       </div>
-
-      <div class="col-lg-7">
-        <h1>Here is where sentiment analyses go</h1><br>
-
-        <%= render partial: '/list_of_quotes', locals: {object: @legislator} %>
-
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-5">
+        <h1 class="quotes-list"><%= @legislator.first_name.upcase %> <%= @legislator.last_name.upcase %></h1>
+        <p><strong>Party:</strong> <%= @legislator.show_party %> || <strong>Title:</strong> <%= @legislator.show_title %> || <strong>State:</strong> <%= @legislator.state.name %></p>
+        <p><strong>Twitter:</strong> <%= link_to @legislator.twitter_handle, "http://twitter.com/#{@legislator.twitter_handle}" %> || <strong>Website:</strong> <%= link_to @legislator.website, @legislator.website %></p>
+        <%= render partial: '/list_of_quotes', locals: { object: @legislator } %>
       </div>
     <% end %>
   </div>

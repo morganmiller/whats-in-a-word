@@ -1,16 +1,13 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-5">
-      <br><br><br>
+    <br>
+    <div class="col-lg-6">
+      <br>
       <div id="word-cloud" data-root="/states/" data-id="<%= @state.name %>"></div>
       <%= render partial: '/legislators', locals: { state: @state } %>
     </div>
-
-    <div class="col-lg-7">
-      <h1>Here is where sentiment analyses go</h1><br>
-
-      <%= render partial: '/list_of_quotes', locals: { object: @state } %>
-
+    <div class="col-lg-1">
     </div>
-  </div>
+    <div class="col-lg-5">
+      <%= render partial: '/list_of_quotes', locals: { object: @state } %>
+    </div>
 </div>

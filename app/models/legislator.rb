@@ -24,4 +24,20 @@ class Legislator < ActiveRecord::Base
       self.bio_id = quotes.first.bio_id
     end
   end
+
+  def show_party
+    if party == "D"
+      "Democrat"
+    else
+      "Republican"
+    end
+  end
+
+  def show_title
+    if title == "Rep"
+      "Representative"
+    else
+      "Senator"
+    end
+  end
 end

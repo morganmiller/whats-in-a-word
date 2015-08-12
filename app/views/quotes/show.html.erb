@@ -1,1 +1,8 @@
-<p>"<%= @quote.body %>" - <%= @quote.speaker %></p>
+<div class="container">
+  <div class="row">
+    <br><br><br>
+    <p class="quote-text">"<%= @quote.body %>" - <strong><%= @quote.speaker %></strong></p>
+    <%= button_to "Back to Map", states_path, class: 'map-btn-2', method: :get %>
+  </div>
+</div>
+

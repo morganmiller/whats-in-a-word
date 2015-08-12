@@ -5,17 +5,23 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
 </head>
 
+<%= render "shared/navbar" %>
+
 <body>
-<% if current_user %>
-  <p>hello, <%= current_user.name %></p>
-  <%= link_to "logout", logout_path %>
-<% else %>
-  <%= link_to "login", login_path %>
-<% end %>
-
-<%= yield %>
-
+  <% unless current_page?(root_path) %>
+    <%= image_tag 'donkey-elephant.png', class: 'baby-donkey-elephant' %>
+  <% end %>
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+  <div id="footer">
+    <%= render "shared/footer" %>
+  </div>
 </body>
 </html>
