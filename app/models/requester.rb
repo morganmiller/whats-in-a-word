@@ -27,11 +27,11 @@ class Requester
                        entity_value: leg.bio_id,
                        sort: "count desc"}}
 
-    phrases_query(params).first(30)
+    phrases_query(params).first(25)
   end
 
   def self.filter_unwanted_words(words, state)
-    lame_words = ["amendment", "thing", "maybe"]
+    lame_words = ["amendment", "thing", "maybe", "...", "b", "c"]
     words.delete_if do |word|
       word[:ngram].include?(state.full_name.downcase) || lame_words.include?(word[:ngram])
     end
@@ -50,7 +50,8 @@ class Requester
     most_used_words_for_legislator(leg).map do |word_attrs|
       { word: word_attrs[:ngram],
         mentions: word_attrs[:count],
-        legislator: leg
+        legislator: leg,
+        state: leg.state
       }
     end
   end
@@ -60,7 +61,7 @@ class Requester
                         phrase: word.word,
                         speaker_state: state.name,
                         start_date: "2015-01-01",
-                        per_page: "500"}}
+                        per_page: "300"}}
 
     text_query(params)
   end

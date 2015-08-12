@@ -22,7 +22,8 @@ class LegislatorRequester
         term_end: legislator["term_end"],
         twitter_handle: legislator["twitter_id"],
         title: legislator["title"],
-        website: legislator["website"]
+        website: legislator["website"],
+        bio_id: legislator["bioguide_id"]
       }
     end
   end
