@@ -16,7 +16,7 @@ class Parser
   end
 
   def self.create_leg_quotes
-    Legislator.all[224..-1].each do |leg|
+    Legislator.all.each do |leg|
       leg.words.each do |word|
         Requester.leg_quote_attrs(word, leg).each do |quote|
           if quote[:body].length > 160
@@ -26,10 +26,9 @@ class Parser
         end
       end
     end
-    check_for_bad_words
   end
 
-  def self.check_for_bad_words
+  def self.check_for_quoteless_words
     Word.all.each do |word|
       word.destroy! if word.quotes.count == 0
     end
