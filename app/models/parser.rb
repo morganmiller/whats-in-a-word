@@ -8,7 +8,7 @@ class Parser
   end
 
   def self.create_leg_quotes
-    Legislator.all[4..-1].each do |leg|
+    Legislator.all.each do |leg|
       leg.words.each do |word|
         Requester.leg_quote_attrs(word, leg).each do |quote|
           if quote[:body].length > 160
