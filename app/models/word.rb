@@ -9,14 +9,18 @@ class Word < ActiveRecord::Base
 
   def percent_positive
     unless congress_sentiments == []
-      (congress_sentiments.count { |n| n > 0 }.to_f / congress_sentiments.length.to_f * 100).to_i
+      calculate_sentiment(:>)
     end
   end
 
   def percent_negative
     unless congress_sentiments == []
-      (congress_sentiments.count { |n| n < 0 }.to_f / congress_sentiments.length.to_f * 100).to_i
+      calculate_sentiment(:<)
     end
+  end
+
+  def calculate_sentiment(operator)
+    (congress_sentiments.count { |n| n.send(operator, 0) }.to_f / congress_sentiments.length.to_f * 100).to_i
   end
 
   def random_quotes
