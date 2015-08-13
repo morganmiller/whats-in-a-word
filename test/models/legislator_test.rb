@@ -5,9 +5,9 @@ class QuoteTest < ActiveSupport::TestCase
     leg = Legislator.create(first_name: "Mark",
                             last_name: "Kirk")
 
-    w  = Word.create(word: "bunny", legislator: leg, state: co, mentions: 2)
-    w2 = Word.create(word: "donkey", legislator: leg, state: co, mentions: 3)
-    w3 = Word.create(word: "elephant", legislator: leg, state: co, mentions: 1)
+    w  = Word.create(word: "bunny", legislator: leg, mentions: 2)
+    w2 = Word.create(word: "donkey", legislator: leg, mentions: 3)
+    w3 = Word.create(word: "elephant", legislator: leg, mentions: 1)
 
     expected = [
       {:text=>"bunny", :weight=>2, :link=>{:href=>"#", :class=>"cloud-link"}},

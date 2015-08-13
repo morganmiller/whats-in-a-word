@@ -3,9 +3,11 @@
     <span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
     <% @state.legislators.each do |leg| %>
-      <li role="presentation"><a role="menuitem" href="<%= legislator_path(leg) %>">
-        <%= leg.first_name %> <%= leg.last_name %>
-      </a></li>
+      <% unless leg.words == [] %>
+        <li role="presentation"><a role="menuitem" href="<%= legislator_path(leg) %>">
+          <%= leg.first_name %> <%= leg.last_name %>
+        </a></li>
+      <% end %>
     <% end %>
   </ul>
 </div>
