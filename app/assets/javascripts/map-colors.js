@@ -1,3 +1,6 @@
-$('#map').usmap({
-  stateStyles: {fill: '#948466'}
+$(document).ready(function() {
+  $('#map').usmap({
+    stateStyles: {fill: '#948466'}
+  });
 });
+
