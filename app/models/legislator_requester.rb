@@ -5,8 +5,8 @@ class LegislatorRequester
 
   def self.legislators_by_state(state)
     params = { query: {apikey: KEY,
-      state: state.name,
-      per_page: "50"}}
+                       state: state.name,
+                       per_page: "50"}}
 
     self.get("/legislators?", params).parsed_response["results"]
   end
