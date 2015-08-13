@@ -3,8 +3,6 @@ class Legislator < ActiveRecord::Base
   has_many :quotes
   has_many :words
 
-  before_validation :set_bio_id
-
   def cloud
     self.words.map do |word|
       { text: word.word,
@@ -16,13 +14,6 @@ class Legislator < ActiveRecord::Base
 
   def random_quotes
     self.quotes.sample(3)
-  end
-
-  def set_bio_id
-    quotes = Quote.where(speaker: "#{first_name} #{last_name}")
-    unless quotes == []
-      self.bio_id = quotes.first.bio_id
-    end
   end
 
   def show_party

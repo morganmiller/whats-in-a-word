@@ -8,9 +8,9 @@ class StateTest < ActiveSupport::TestCase
     w3 = Word.create(word: "grizzlies", state: co, mentions: 1)
 
     expected = [
-      {text: "mountains", weight: 2, link: {href: "#", class: "cloud-link"}},
-      {text: "rivers", weight: 3, link: {href: "#", class: "cloud-link"}},
-      {text: "grizzlies", weight: 1, link: {href: "#", class: "cloud-link"}}
+      {:text=>"rivers", :weight=>3, :link=>{:href=>"#", :class=>"cloud-link"}},
+      {:text=>"mountains", :weight=>2, :link=>{:href=>"#", :class=>"cloud-link"}},
+      {:text=>"grizzlies", :weight=>1, :link=>{:href=>"#", :class=>"cloud-link"}}
     ]
 
     assert_equal expected, co.cloud
