@@ -8,7 +8,8 @@ class Requester
   end
 
   def self.text_query(params)
-    self.get("/text.json", params).parsed_response["results"].map(&:symbolize_keys)
+    query = self.get("/text.json", params).parsed_response["results"]
+    query.map(&:symbolize_keys) unless query.is_a?(String)
   end
 
   def self.most_used_words_for_legislator(leg)
